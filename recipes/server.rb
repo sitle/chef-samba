@@ -29,7 +29,7 @@ template '/etc/samba/smb.conf' do
   owner 'root'
   group 'root'
   mode '0644'
-  notifies :restart, "service[samba]"
+  notifies :restart, 'service[samba]'
 end
 
 if node['samba']['backend'] == 'ldap'
@@ -43,25 +43,25 @@ if node['samba']['backend'] == 'ldap'
   execute "smbpasswd -w #{node['samba']['admin_password']}" do
     command "smbpasswd -w #{node['samba']['admin_password']}"
     action :run
-    notifies :restart, "service[samba]"
+    notifies :restart, 'service[samba]'
   end
 end
 
 service 'samba' do
-  supports :status => true, :restart => true, :reload => true
-  action [ :enable, :start ]
+  supports status: true, restart: true, reload: true
+  action [:enable, :start]
 end
 
-directory "/var/spool/samba" do
-  owner "root"
-  group "root"
-  mode "0775"
+directory '/var/spool/samba' do
+  owner 'root'
+  group 'root'
+  mode '0775'
   action :create
 end
 
-directory "/var/spool/samba/travail" do
-  owner "root"
-  group "Domain\ Admins"
-  mode "0770"
+directory '/var/spool/samba/travail' do
+  owner 'root'
+  group 'Domain\ Admins'
+  mode '0770'
   action :create
 end

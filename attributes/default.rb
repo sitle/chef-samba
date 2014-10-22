@@ -24,7 +24,7 @@ default['samba']['ldap_server'] = 'ldapserver'
 default['samba']['ldap_ssl'] = 'no'
 default['samba']['base_dn'] = 'dc=example,dc=com'
 default['samba']['admin_dn'] = "cn=manager,#{node['samba']['base_dn']}"
-default['samba']['admin_password'] = "password"
+default['samba']['admin_password'] = 'password'
 default['samba']['user_suffix'] = 'ou=person'
 default['samba']['group_suffix'] = 'ou=group'
 default['samba']['machine_suffix'] = 'ou=computer'
